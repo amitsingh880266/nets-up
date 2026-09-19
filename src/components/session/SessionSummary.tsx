@@ -6,6 +6,7 @@ import { BackLink } from "@/components/ui/BackLink";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { StatCard } from "@/components/ui/StatCard";
+import { ShareSummaryButton } from "@/components/session/ShareSummaryButton";
 import { storageService } from "@/lib/storage";
 import { formatOvers, percentage } from "@/lib/stats/calculations";
 import type { Player, Session } from "@/types";
@@ -110,6 +111,7 @@ export function SessionSummary({ sessionId }: Readonly<{ sessionId: string }>) {
       </Card>
 
       <div className="flex flex-col gap-3">
+        <ShareSummaryButton session={session} player={player} />
         <Link href={player ? `/players/${player.id}` : "/players"}>
           <Button className="w-full">View My Stats</Button>
         </Link>
