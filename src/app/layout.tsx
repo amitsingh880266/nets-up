@@ -12,8 +12,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-const title = "NetsUp — Cricket Net Practice Tracker";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://netsy.in";
+const title = "Netsy — Cricket Net Practice Tracker";
 const description =
   "Track every ball during cricket net practice and analyze your batting performance with real-time session statistics. The fastest way to count balls, overs, and shot quality at the nets.";
 
@@ -21,10 +21,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: title,
-    template: "%s | NetsUp",
+    template: "%s | Netsy",
   },
   description,
-  applicationName: "NetsUp",
+  applicationName: "Netsy",
   keywords: [
     "cricket net practice",
     "cricket practice tracker",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     "cricket batting analytics",
     "net session tracker app",
   ],
-  authors: [{ name: "NetsUp" }],
+  authors: [{ name: "Netsy" }],
   category: "sports",
   alternates: {
     canonical: "/",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "/",
-    siteName: "NetsUp",
+    siteName: "Netsy",
     title,
     description,
     locale: "en_US",

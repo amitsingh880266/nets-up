@@ -27,7 +27,7 @@ function readList<T>(key: string): T[] {
     const parsed = JSON.parse(raw);
     return Array.isArray(parsed) ? (parsed as T[]) : [];
   } catch {
-    console.warn(`NetsUp: corrupted data for "${key}", resetting.`);
+    console.warn(`Netsy: corrupted data for "${key}", resetting.`);
     return [];
   }
 }

@@ -17,18 +17,23 @@ export function SessionSummary({ sessionId }: Readonly<{ sessionId: string }>) {
 
   useEffect(() => {
     let active = true;
-    storageService.getSession(sessionId).then(async (found) => {
-      if (!active) return;
-      if (!found) {
+    storageService
+      .getSession(sessionId)
+      .then(async (found) => {
+        if (!active) return;
+        if (!found) {
+          setLoading(false);
+          return;
+        }
+        const p = await storageService.getPlayer(found.playerId);
+        if (!active) return;
+        setSession(found);
+        setPlayer(p);
         setLoading(false);
-        return;
-      }
-      const p = await storageService.getPlayer(found.playerId);
-      if (!active) return;
-      setSession(found);
-      setPlayer(p);
-      setLoading(false);
-    });
+      })
+      .catch(() => {
+        if (active) setLoading(false);
+      });
     return () => {
       active = false;
     };

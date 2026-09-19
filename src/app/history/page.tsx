@@ -14,14 +14,13 @@ export default function HistoryPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    Promise.all([
-      storageService.getSessions(),
-      storageService.getPlayers(),
-    ]).then(([sessionList, playerList]) => {
-      setSessions(sessionList.filter((s) => s.endedAt));
-      setPlayers(Object.fromEntries(playerList.map((p) => [p.id, p])));
-      setLoading(false);
-    });
+    Promise.all([storageService.getSessions(), storageService.getPlayers()])
+      .then(([sessionList, playerList]) => {
+        setSessions(sessionList.filter((s) => s.endedAt));
+        setPlayers(Object.fromEntries(playerList.map((p) => [p.id, p])));
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
   }, []);
 
   return (

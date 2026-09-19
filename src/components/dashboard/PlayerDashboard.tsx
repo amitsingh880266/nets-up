@@ -26,13 +26,17 @@ export function PlayerDashboard({ playerId }: Readonly<{ playerId: string }>) {
       storageService.getPlayer(playerId),
       storageService.getPlayerStats(playerId),
       storageService.getSessions(playerId),
-    ]).then(([p, s, sess]) => {
-      if (!active) return;
-      setPlayer(p);
-      setStats(s);
-      setSessions(sess.filter((session) => session.endedAt));
-      setLoading(false);
-    });
+    ])
+      .then(([p, s, sess]) => {
+        if (!active) return;
+        setPlayer(p);
+        setStats(s);
+        setSessions(sess.filter((session) => session.endedAt));
+        setLoading(false);
+      })
+      .catch(() => {
+        if (active) setLoading(false);
+      });
     return () => {
       active = false;
     };

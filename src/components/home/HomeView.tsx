@@ -21,10 +21,16 @@ export function HomeView() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    storageService.getPlayers().then((list) => {
-      setPlayers(list);
-      setLoading(false);
-    });
+    storageService
+      .getPlayers()
+      .then((list) => {
+        setPlayers(list);
+        setLoading(false);
+      })
+      .catch(() => {
+        setError("Could not load players. Please refresh the page.");
+        setLoading(false);
+      });
   }, []);
 
   const startSessionFor = async (player: Player) => {
@@ -55,7 +61,7 @@ export function HomeView() {
     <div className="mx-auto flex w-full max-w-md flex-1 flex-col gap-8 px-6 py-14 text-white">
       <div className="flex flex-col items-center gap-2 text-center">
         <h1 className="text-5xl font-black tracking-tight">
-          Nets<span className="text-lime-400">Up</span>
+          Netsy<span className="text-lime-400">.in</span>
         </h1>
         <p className="text-white/60">Your net. Your balls. Your stats.</p>
       </div>

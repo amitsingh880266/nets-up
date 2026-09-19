@@ -52,23 +52,30 @@ export function ActiveSession({ sessionId }: Readonly<{ sessionId: string }>) {
 
   useEffect(() => {
     let active = true;
-    storageService.getSession(sessionId).then(async (found) => {
-      if (!active) return;
-      if (!found) {
+    storageService
+      .getSession(sessionId)
+      .then(async (found) => {
+        if (!active) return;
+        if (!found) {
+          setNotFound(true);
+          setLoading(false);
+          return;
+        }
+        const [p, d] = await Promise.all([
+          storageService.getPlayer(found.playerId),
+          storageService.getDeliveries(sessionId),
+        ]);
+        if (!active) return;
+        setSession(found);
+        setPlayer(p);
+        setDeliveries(d);
+        setLoading(false);
+      })
+      .catch(() => {
+        if (!active) return;
         setNotFound(true);
         setLoading(false);
-        return;
-      }
-      const [p, d] = await Promise.all([
-        storageService.getPlayer(found.playerId),
-        storageService.getDeliveries(sessionId),
-      ]);
-      if (!active) return;
-      setSession(found);
-      setPlayer(p);
-      setDeliveries(d);
-      setLoading(false);
-    });
+      });
     return () => {
       active = false;
     };

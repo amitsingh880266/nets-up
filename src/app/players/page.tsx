@@ -18,11 +18,17 @@ export default function PlayersPage() {
   const [showCreate, setShowCreate] = useState(false);
 
   useEffect(() => {
-    storageService.getPlayers().then((list) => {
-      setPlayers(list);
-      setLoading(false);
-      setShowCreate(list.length === 0);
-    });
+    storageService
+      .getPlayers()
+      .then((list) => {
+        setPlayers(list);
+        setLoading(false);
+        setShowCreate(list.length === 0);
+      })
+      .catch(() => {
+        setLoading(false);
+        setShowCreate(true);
+      });
   }, []);
 
   const selectPlayer = (player: Player) => {
