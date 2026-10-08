@@ -2,7 +2,7 @@
 
 Netsy (netsy.in) - A smart cricket net practice tracker that helps players count balls, track overs, monitor practice sessions, and stay focused on their game. Built to make cricket practice more measurable, organized, and engaging.
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Try it out - https://netsydotin.netlify.app/
 
 ## Getting Started
 
